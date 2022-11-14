@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker",
+        "eamodio.gitlens",
+        "nrwl.angular-console",
+        "firsttris.vscode-jest-runner",
+        "irongeek.vscode-env",
+        "orta.vscode-jest",
+        "graphql.vscode-graphql"
+    ]
+}

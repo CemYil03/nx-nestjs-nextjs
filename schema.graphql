@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Mutation {
+  User: UserMutation!
+}
+
+"""A string that cannot be passed as an empty value"""
+scalar NonEmptyString
+
+type Query {
+  User: UserQuery!
+}
+
+type User {
+  userId: NonEmptyString!
+}
+
+type UserMutation {
+  createOne: Boolean!
+  deleteOne: Boolean!
+}
+
+type UserQuery {
+  findMany: [User!]!
+  findOne(userId: String!): User
+}

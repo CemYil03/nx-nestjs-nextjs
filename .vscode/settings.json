@@ -1,0 +1,24 @@
+{
+    "editor.foldingImportsByDefault": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "cSpell.language": "en,de-de",
+    "cSpell.words": [
+        "buildable",
+        "cacheable",
+        "dtos",
+        "esnext",
+        "jwks",
+        "nestjs",
+        "nrwl",
+        "svgr",
+        "twilio",
+        "typedef",
+        "typeorm",
+        "yoda"
+    ]
+}
