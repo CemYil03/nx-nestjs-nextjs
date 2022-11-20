@@ -20,7 +20,7 @@ export class LogService {
         }
     }
 
-    async createOne(message: string, className: string, methodName: string, color: 'none' | 'red' | 'pink' = 'none'): Promise<void> {
+    async createOne(message: any, className: string, methodName: string, color: 'none' | 'red' | 'pink' = 'none'): Promise<void> {
         const stringifiedMessage: string = JSON.stringify(message ?? '');
 
         if (environment.type === 'local') {

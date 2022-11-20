@@ -40,3 +40,11 @@ Thumbs.db
 
 # Next.js
 .next
+
+.env
+
+/images/meal-images/*
+!/images/meal-images/.gitkeep
+
+/images/profile-pictures/*
+!/images/profile-pictures/.gitkeep

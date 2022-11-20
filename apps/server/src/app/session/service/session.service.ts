@@ -31,7 +31,9 @@ export class SessionService {
 
     async createOne(sessionId: string): Promise<boolean> {
         try {
-            await this.sessions.insert({});
+            await this.sessions.insert({
+                sessionId: sessionId,
+            });
             return true;
         } catch (error) {
             await this.logService.createOne(error, SessionService.name, SessionService.prototype.createOne.name);

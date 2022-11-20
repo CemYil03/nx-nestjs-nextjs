@@ -23,9 +23,11 @@ const sharedServices: Provider[] = [
     SubscriptionService,
 ];
 
+const services: Provider[] = [UserService, SessionService, LogService];
+
 @Module({
     imports: [RepositoryModule],
-    providers: [...sharedServices, UserService, SessionService, LogService],
-    exports: [],
+    providers: [...sharedServices, ...services],
+    exports: [...sharedServices, ...services],
 })
 export class ServiceModule {}

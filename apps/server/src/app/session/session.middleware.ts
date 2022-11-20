@@ -1,19 +1,24 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { environment } from '../../environments/environment.local';
+import { LogService } from '../log/service/log.service';
 import { IdentifierService } from '../_shared-services/identifier/identifier.service';
 import { SessionService } from './service/session.service';
 import { Session } from './session.model';
 
 @Injectable()
-export class SessionMiddleWare implements NestMiddleware {
+export class SessionMiddleware implements NestMiddleware {
     private readonly sessionTimeToLive: number = 30 * 24 * 60 * 60 * 1000;
 
-    constructor(private readonly sessionService: SessionService, private readonly identifierService: IdentifierService) {}
+    constructor(
+        private readonly sessionService: SessionService,
+        private readonly identifierService: IdentifierService,
+        private readonly logService: LogService,
+    ) {}
 
     async use(request: Request, response: Response, next: NextFunction): Promise<void> {
         const sessionId: string | undefined = request.cookies[environment.type];
-
+        await this.logService.createOne({ sessionId }, SessionMiddleware.name, SessionMiddleware.prototype.use.name, 'pink');
         if (!sessionId) {
             const success: boolean = await this.createNewSession(request, response);
             if (!success) throw new Error('session creation failed');
@@ -45,7 +50,7 @@ export class SessionMiddleWare implements NestMiddleware {
             httpOnly: true,
             expires: new Date(Date.now() + this.sessionTimeToLive),
             secure: environment.type !== 'local',
-            sameSite: 'strict',
+            sameSite: 'none',
         });
 
         request['session'] = { sessionId: generatedSessionId, userId: null };

@@ -2,13 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LogService } from '../../log/service/log.service';
+import { FindManyUsersRequest } from '../dtos/find-many-users.request';
 import { User } from '../user.model';
 
 @Injectable()
 export class UserService {
     constructor(@InjectRepository(User) private readonly users: Repository<User>, private readonly logService: LogService) {}
 
-    async findMany(): Promise<User[]> {
+    async findMany(reqeust: FindManyUsersRequest): Promise<User[]> {
         try {
             const users: User[] = await this.users.find();
             return users;
